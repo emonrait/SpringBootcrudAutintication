@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.springboot.model.User;
+import com.example.springboot.model.UserInfo;
 import com.example.springboot.repository.UserRepository;
 
 @Service
@@ -57,10 +58,12 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByMobile(mobile);
 	}
 
+	
+
 	@Override
-	public User userLogin(String mobile, String password) {
+	public UserInfo authInfo(String mobile, String password) {
 		// TODO Auto-generated method stub
-		return null;
+		return userRepository.authInfo(mobile,password);
 	}
 
 }

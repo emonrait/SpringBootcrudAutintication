@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.springboot.model.User;
+import com.example.springboot.model.UserInfo;
 import com.example.springboot.service.UserService;
 
 @RestController
@@ -22,7 +24,7 @@ public class MainController {
 
 	@PostMapping("/addUser")
 	public User addUser(@RequestBody User user) {
-		String tempmobile=user.getMobile();
+		//String tempmobile=user.getMobile();
 		
 		
 		return userService.insertUser(user);
@@ -33,15 +35,26 @@ public class MainController {
 		return userService.getAllUsers();
 	}
 	
-	@GetMapping("/login")
-	public User userLogin(@RequestBody User user) {
+	@GetMapping("/loginbymobile")
+	public UserInfo userLogin(@RequestBody User user) {
 		String tempMobile = user.getMobile();
 		String temPassword = user.getPassword();
-		User userobj = null;
+		//UserInfo userobj = null;
+		
+		
+		System.out.println("Print tempMobile: "+tempMobile);
+		System.out.println("Print temPassword: "+temPassword);
 
-		if (tempMobile != null && temPassword != null) {
-			//userobj = userService.userLogin(tempMobile, temPassword);
-		}
+
+		
+		UserInfo userobj = userService.authInfo(tempMobile, temPassword);
+			
+			
+			System.out.println("Print Out Mobile no: "+userobj.getMobile());
+			System.out.println("Print Out Password: "+userobj.getPassword());
+			
+
+		
 		return userobj;
 	}
 

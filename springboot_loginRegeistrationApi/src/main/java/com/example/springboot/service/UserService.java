@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import com.example.springboot.model.User;
+import com.example.springboot.model.UserInfo;
 
 public interface UserService {
 	
@@ -18,7 +19,9 @@ public interface UserService {
 
 	public String deleteUser(int userId);
 
-	public User userLogin(String mobile, String password);
+	//public User userLogin(String mobile, String password);
+	public UserInfo authInfo(String mobile,String password );
+
 	
 	public User getUserByName(String name);
 	
